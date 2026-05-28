@@ -1,5 +1,3 @@
-// AlphaLatitude Inc. (c) 2026
-
 # OptionsAhoy Claude Code plugin
 
 Adds the OptionsAhoy MCP server and one planning skill to Claude Code.
@@ -13,18 +11,20 @@ OptionsAhoy is a deterministic US equity-compensation tax optimizer. Six tools c
 
 ## Install
 
-After the plugin is approved into the community marketplace, install with:
+### Test locally (works today)
+
+```
+claude --plugin-dir ./optionsahoy-claude-plugin
+```
+
+### Via community marketplace (after Anthropic approval)
 
 ```
 /plugin marketplace add anthropics/claude-plugins-community
 /plugin install optionsahoy@claude-community
 ```
 
-To test locally before submission:
-
-```
-claude --plugin-dir ./optionsahoy-claude-plugin
-```
+Submission pending at https://claude.ai/settings/plugins/submit.
 
 ## Use
 
