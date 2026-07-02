@@ -2,7 +2,7 @@
 
 Adds the OptionsAhoy MCP server and one planning skill to Claude Code.
 
-OptionsAhoy is a deterministic US equity-compensation tax optimizer. Six tools cover incentive stock option (ISO) and alternative minimum tax (AMT) exercise planning, non-qualified stock option (NSO) sell-vs-hold, restricted stock unit (RSU) vest-and-sell, single-stock concentration, protective put and zero-cost collar pricing, and Section 1202 qualified small business stock (QSBS) qualification. Federal plus 50-state plus District of Columbia (DC) tax math.
+OptionsAhoy is a deterministic US equity-compensation tax optimizer. Seven tools cover incentive stock option (ISO) and alternative minimum tax (AMT) exercise planning, non-qualified stock option (NSO) sell-vs-hold, restricted stock unit (RSU) vest-and-sell, single-stock concentration, protective put and zero-cost collar pricing, Section 1202 qualified small business stock (QSBS) qualification, and equity funding plans (which shares to sell to net a target after-tax amount by a deadline). Federal plus 50-state plus District of Columbia (DC) tax math.
 
 ## What gets installed
 
@@ -11,20 +11,36 @@ OptionsAhoy is a deterministic US equity-compensation tax optimizer. Six tools c
 
 ## Install
 
-### Test locally (works today)
+### From this repository (works today)
+
+This repository is its own plugin marketplace. In Claude Code:
+
+```
+/plugin marketplace add AlvisoOculus/optionsahoy-claude-plugin
+/plugin install optionsahoy@alphalatitude
+```
+
+Or from the shell:
+
+```
+claude plugin marketplace add AlvisoOculus/optionsahoy-claude-plugin
+claude plugin install optionsahoy@alphalatitude
+```
+
+### Test a local clone
 
 ```
 claude --plugin-dir ./optionsahoy-claude-plugin
 ```
 
-### Via community marketplace (after Anthropic approval)
+### Via the Anthropic community marketplace (after approval)
 
 ```
 /plugin marketplace add anthropics/claude-plugins-community
 /plugin install optionsahoy@claude-community
 ```
 
-Submission pending at https://claude.ai/settings/plugins/submit.
+Submitted to the Claude plugin directory 2026-05-27; awaiting Anthropic review. The current submission form is clau.de/plugin-directory-submission.
 
 ## Use
 

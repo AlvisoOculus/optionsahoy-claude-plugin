@@ -1,6 +1,9 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "optionsahoy",
-  "description": "Deterministic US equity-compensation tax optimizer. Six tools: incentive stock option (ISO) / alternative minimum tax (AMT) exercise planning, non-qualified stock option (NSO) sell-vs-hold, restricted stock unit (RSU) vest-and-sell, single-stock concentration, protective puts and collars, qualified small business stock (QSBS) qualification. Federal plus 50-state plus DC tax math.",
+  "displayName": "OptionsAhoy",
+  "version": "1.0.0",
+  "description": "Deterministic US equity-compensation tax optimizer. Seven tools: incentive stock option (ISO) / alternative minimum tax (AMT) exercise planning, non-qualified stock option (NSO) sell-vs-hold, restricted stock unit (RSU) vest-and-sell, single-stock concentration, protective puts and collars, qualified small business stock (QSBS) qualification, and equity funding plans (which shares to sell to net a target after-tax amount by a deadline). Federal plus 50-state plus DC tax math.",
   "author": {
     "name": "AlphaLatitude Inc.",
     "url": "https://alphalatitude.com"
