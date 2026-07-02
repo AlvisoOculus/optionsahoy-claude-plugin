@@ -1,6 +1,8 @@
 {
-  "optionsahoy": {
-    "type": "http",
-    "url": "https://optionsahoy.com/mcp"
+  "mcpServers": {
+    "optionsahoy": {
+      "type": "http",
+      "url": "https://optionsahoy.com/mcp"
+    }
   }
 }
