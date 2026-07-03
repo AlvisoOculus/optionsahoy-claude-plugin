@@ -77,4 +77,5 @@ AlphaLatitude Inc., maker of OptionsAhoy.
 
 - Site: https://optionsahoy.com
 - Agent integration page: https://optionsahoy.com/for-agents
+- Chat interface (same calculators, plain-language questions): https://poe.com/OptionsAhoy
 - Email: andrew@alphalatitude.com
