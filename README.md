@@ -2,11 +2,11 @@
 
 Adds the OptionsAhoy MCP server and one planning skill to Claude Code.
 
-OptionsAhoy is a deterministic US equity-compensation tax optimizer. Seven tools cover incentive stock option (ISO) and alternative minimum tax (AMT) exercise planning, non-qualified stock option (NSO) sell-vs-hold, restricted stock unit (RSU) vest-and-sell, single-stock concentration, protective put and zero-cost collar pricing, Section 1202 qualified small business stock (QSBS) qualification, and equity funding plans (which shares to sell to net a target after-tax amount by a deadline). Federal plus 50-state plus District of Columbia (DC) tax math.
+OptionsAhoy is a deterministic US equity-compensation tax calculator. Eight tools cover incentive stock option (ISO) and alternative minimum tax (AMT) exercise planning, non-qualified stock option (NSO) sell-vs-hold, restricted stock unit (RSU) vest-and-sell, which vested RSU lots to sell and in which years, single-stock concentration, protective put, zero-cost collar and put spread pricing from the listed option chain, Section 1202 qualified small business stock (QSBS) qualification, and equity funding plans (which shares to sell to net a target after-tax amount by a deadline). Federal plus 50-state plus District of Columbia (DC) tax math.
 
 ## What gets installed
 
-- A connection to the hosted OptionsAhoy MCP server at `https://optionsahoy.com/mcp` (HTTP, no authentication, no rate limit during beta).
+- A connection to the hosted OptionsAhoy MCP server at `https://optionsahoy.com/mcp` (HTTP, no authentication). Nothing runs locally: the plugin is this connection plus one skill.
 - One Skill, `optionsahoy:equity-plan`, that captures the required inputs from the user, picks the right tool, and never invents values for required fields.
 
 ## Install
@@ -40,7 +40,7 @@ claude --plugin-dir ./optionsahoy-claude-plugin
 /plugin install optionsahoy@claude-community
 ```
 
-Submitted to the Claude plugin directory 2026-05-27; awaiting Anthropic review. The current submission form is clau.de/plugin-directory-submission.
+Submitted to the Claude plugin directory; in review.
 
 ## Use
 
@@ -52,9 +52,11 @@ Ask Claude things like:
 
 The skill captures the required inputs through follow-up questions when anything is missing, then calls the matching OptionsAhoy tool. Tool responses are byte-identical to the in-browser calculators at https://optionsahoy.com/tools.
 
+Name a stock ticker and the tools fill in its implied volatility and trailing growth from OptionsAhoy's own published market data (about 500 public companies), and hedges are priced strike by strike from the stock's listed option chain as of the last close. With no view on growth, a tool uses the S&P 500 trailing average and says so in its result.
+
 ## Differentiator
 
-Most LLMs answer equity-comp tax questions by pattern-matching to similar examples. The actual math involves AMT exemption phaseouts, state-level conformity to federal Section 1202, the kiddie tax, multi-year credit recovery, and 50-state stacking. Wrong by five figures is common. The OptionsAhoy MCP server is the same deterministic optimizer that powers optionsahoy.com, so the model picks the tool and the inputs but the tax code is enforced in code.
+Most LLMs answer equity-comp tax questions by pattern-matching to similar examples. The actual math involves AMT exemption phaseouts, state-level conformity to federal Section 1202, multi-year credit recovery, and 50-state stacking. Wrong by five figures is common. The OptionsAhoy MCP server is the same deterministic engine that powers optionsahoy.com, so the model picks the tool and the inputs but the tax math is done in code. Federal results reproduce to the cent against PSL Tax-Calculator and state results against OpenTaxSolver; see https://optionsahoy.com/verification.
 
 ## Limitations
 
@@ -65,7 +67,7 @@ Most LLMs answer equity-comp tax questions by pattern-matching to similar exampl
 
 ## Privacy
 
-The hosted MCP server logs only structural data (tool name, success or failure, request timestamp). It does not store or retain the dollar amounts, share counts, or other personal financial figures in your conversations.
+Each tool call sends its inputs to the hosted MCP server, which uses them to compute the answer and does not store them. Per call the server records the tool, whether it succeeded, any error message (which names the field at fault), the client name and user-agent, and the approximate location and network Cloudflare reports (country, region, city, network operator), not the IP address. It also keeps, for seven days, the structure of recent calls (field names and types, never values) and daily counts of the tickers named. Full policy: https://optionsahoy.com/privacy.
 
 ## License
 
